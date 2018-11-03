@@ -22,7 +22,7 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
-let blocks = scrolldiv.getElementsByClassName("block");
+let blocks = scrolldiv.querySelectorAll(".block");
 blocks.forEach(function(block) {
   block.addEventListener('click', function() {
 
@@ -65,7 +65,7 @@ function checkCollide() {
   let player = document.getElementsByClassName("player")[0];
   let playerRect = player.getBoundingClientRect();
 
-  let obstacles = document.getElementsByClassName("obstacle");
+  let obstacles = document.querySelectorAll(".obstacle");
 
   obstacles.forEach(function(obstacle) {
     let obstacleRect = obstacle.getBoundingClientRect();
