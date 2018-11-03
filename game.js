@@ -96,17 +96,7 @@ function checkCollide() {
     if (overlap && typeof frontEndOnCollide == "function") {
       frontEndOnCollide();
       let stopperScore = document.getElementById("stopper-score");
-
       stopperScore.innerText = parseInt(stopperScore.innerText) + 1;
-
-
-      let stopperScore = document.getElementById("stopper-s
-      let stopperScore = document.getElementById("stopper-score");
-
-      stopperScore.innerText = parseInt(stopperScore.innerText) + 1;
-
-
-      stopperScore.innerText = parseInt(stopperScore.innerTex
     }
   });
 }
