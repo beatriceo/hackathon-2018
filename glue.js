@@ -18,24 +18,15 @@ frontEndOnCollide = function () {
 
 frontEndOnUpArrow = function () {
     var playerPositionY = frontEndGetPlayerPosition()
-    var valid = logicCheckUp(playerPositionY)
-    if (valid) {
-        serverPlayerMove('up')
-    }
+    logicCheckUp(playerPositionY)
 }
 
 frontEndOnDownArrow = function () {
     var playerPositionY = frontEndGetPlayerPosition()
-    var valid = logicCheckDown(playerPositionY)
-    if (valid) {
-        serverPlayerMove('down')
-    }
+    logicCheckDown(playerPositionY)
 }
 
 frontEndOnObstacleDropped = function (obstacle, x, y) {
-    var valid = logicCheckObstaclePlaceLegal(obstacle, x, y)
-    if (valid) {
-        serverDropObstacle(obstacle, x, y)
-    }
+    logicCheckObstaclePlaceLegal(obstacle, x, y)
 }
 
