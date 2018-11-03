@@ -1,6 +1,6 @@
 'use strict'
 
-var startTime = -1
+var startTime = Date.now()
 var collided = false
 
 serverOnGameEnd = function () {

@@ -28,6 +28,7 @@ function logicCheckDown(currPosition) {
 }*/
 
 function logicCheckObstaclePlaceLegal(obstacle, x, y) {
+    console.log(obstacle)
   // First check the obstacle can be placed in the current position
   if(frontEndHasObstacle(x,y)) {
     return false;
@@ -55,5 +56,6 @@ function logicCheckObstaclePlaceLegal(obstacle, x, y) {
   }
 
   // If all the tests have passed, activate this method from the server
+  console.log(obstacle)
   serverDropObstacle(obstacle,x,y);
 }
