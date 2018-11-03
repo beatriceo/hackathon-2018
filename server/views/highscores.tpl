@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <title>High Scores</title>
-        <link rel="stylesheet" href="homepage.css">
+        <link rel="stylesheet" href="/static/homepage.css">
     </head>
 
     <body>
