@@ -1,0 +1,26 @@
+#container {
+    width: 1000px;
+    height: 500px;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+#scroll {
+    width: 1100px;
+    height: 500px;
+    position: relative;
+}
+
+.column {
+    height: 500px;
+    width: 100px;
+    float: left;
+}
+
+.block {
+    height: 100px;
+    width: 100px;
+    border-width: 1px;
+    border-style: solid;
+    box-sizing: border-box;
+}
