@@ -48,6 +48,8 @@ frontEndOnObstacleDropped = function (obstacle, x, y) {
     console.log(typeof x, typeof y)
     var midpoint = frontEndGetMidpoint()
     if (x > midpoint) {
+        obstacle = Math.round(Math.random())
+        console.log(obstacle)
         //console.log('obstacle dropped', [x, y])
         logicCheckObstaclePlaceLegal(obstacle, x, y)
     }
@@ -60,6 +62,7 @@ serverOnGameType = function (type) {
     } else {
         player = false
     }
+    document.getElementById("playerRole").innerText = type
 }
 
 serverOnGameStart = function () {

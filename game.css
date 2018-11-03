@@ -50,7 +50,7 @@ body {
 
 .obstacle-0 {
 
-    background-image: : url('bonfire.png');
+    background-image: url('bonfire.png');
     background-position: center center;
     background-size: cover;
 
@@ -58,7 +58,7 @@ body {
 
 .obstacle-1 {
 
-    background-image: : url('beachball.png');
+    background-image: url('beachball.png');
     background-position: center center;
     background-size: cover;
 

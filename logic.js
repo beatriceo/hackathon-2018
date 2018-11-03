@@ -55,5 +55,5 @@ function logicCheckObstaclePlaceLegal(obstacle, x, y) {
   }
 
   // If all the tests have passed, activate this method from the server
-  serverDropObstacle(OBSTACLE,x,y);
+  serverDropObstacle(obstacle,x,y);
 }
