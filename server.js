@@ -18,15 +18,15 @@ var websocketConnected = false
 
 var serverOnGameStart = null
 var serverOnAdvanceScreen = null
-var serverOnBlockDropped = null
+var serverOnObstalceDropped = null
 var serverOnPlayerMove = null
 
 
-function serverDropBlock(block, x, y) {
+function serverDropObstacle(obstacle, x, y) {
     if (websocketConnected) {
         var msg = {
-            type: 'dropblock',
-            block: block
+            type: 'dropobstacle',
+            obstacle: obstacle
             x: x,
             y: y
         }
@@ -85,12 +85,12 @@ websocket.onmessage = function(evt) {
             }
             break
 
-        case 'blockdrop':
-            if (typeof serverOnBlockDropped === 'function') {
-                var block = message.block
+        case 'obstacledrop':
+            if (typeof serverOnObstacleDropped === 'function') {
+                var obstacle = message.obstacle
                 var x = message.x
                 var y = message.y
-                serverOnBlockDropped(block, x, y)
+                serverOnObstacleDropped(obstacle, x, y)
             }
             break
 
