@@ -40,7 +40,8 @@ function logicCheckObstaclePlaceLegal(obstacle, x, y) {
       let xOffset = x+i;
       let yOffset = y+j;
 
-      if(!(x === xOffset && y === yOffset)) {
+      if (!(x == xOffset && y == yOffset)) {
+          console.log(xOffset, yOffset)
           if (frontEndSquareExists(xOffset, yOffset)) {
         //if((!(xOffset < 0 || xOffset > MAX_BOARD_HEIGHT) && !(yOffset < 0 || yOffset > TABLE_LENGTH))) {
           //console.log("x "+xOffset+" y "+yOffset);

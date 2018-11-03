@@ -34,7 +34,10 @@ frontEndOnDownArrow = function () {
 }
 
 frontEndOnObstacleDropped = function (obstacle, x, y) {
-    console.log('pre:', y)
-    //console.log('obstacle dropped', [x, y])
-    logicCheckObstaclePlaceLegal(obstacle, x, y)
+    console.log(typeof x, typeof y)
+    var midpoint = frontEndGetMidpoint()
+    if (x > midpoint) {
+        //console.log('obstacle dropped', [x, y])
+        logicCheckObstaclePlaceLegal(obstacle, x, y)
+    }
 }
