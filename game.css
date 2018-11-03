@@ -1,8 +1,19 @@
+@font-face {
+    font-family: EightBitDragon;
+    src: url(eight-bit-dragon.otf);
+}
+
+body {
+
+    font-family: EightBitDragon;
+
+}
+
 #container {
   width: 1000px;
   height: 500px;
   overflow: hidden;
-  border: 1px solid black;
+  border: 1px solid #666666;
 }
 
 #scroll {
@@ -23,6 +34,7 @@
   border-width: 1px;
   border-style: solid;
   box-sizing: border-box;
+  border-color: #808080;
 }
 
 #player-column {
@@ -37,11 +49,27 @@
 }
 
 .obstacle-0 {
-    background-color: green;
+
+    background-image: : url('bonfire.png');
+    background-position: center center;
+    background-size: cover;
+
+}
+
+.obstacle-1 {
+
+    background-image: : url('beachball.png');
+    background-position: center center;
+    background-size: cover;
+
 }
 
 .player {
-    background-color: black;
+
+    background-image: url('player.png');
+    background-position: center center;
+    background-size: cover;
+
 }
 
 .player-wrapper {
