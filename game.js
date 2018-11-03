@@ -115,6 +115,11 @@ function frontEndHasObstacle(x, y) {
   return block.classList.contains("obstacle");
 }
 
+function frontEndPlaceObstacle(obstacle, x, y) {
+  let block = getBlock(x, y);
+  block.classList.add(`obstacle-${obstacle}`);
+}
+
 setInterval(function() {
   if (currentpos != endpos) {
     currentpos += 2;
