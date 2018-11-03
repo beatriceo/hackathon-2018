@@ -33,7 +33,7 @@ blocks.forEach(function(block) {
       let y = block.getAttribute("data-y");
 
       if (typeof frontEndOnObstacleDropped == "function") {
-        frontEndOnObstacleDropped(0, x, y);
+        frontEndOnObstacleDropped(0, parseInt(x), parseInt(y));
       }
     });
   }
@@ -146,6 +146,7 @@ function frontEndHasObstacle(x, y) {
           return true
       }
   }
+  return false;
   //return block.classList.contains("obstacle");
 }
 
