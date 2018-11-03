@@ -12,8 +12,8 @@ var frontEndOnDownArrow = null;
 var frontEndOnObstacleDropped = null;
 var frontEndOnCollide = null;
 
-if (player) {
-  document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function(e) {
+  if (player) {
     if (e.keyCode == 38 && typeof frontEndOnUpArrow == "function") {
       frontEndOnUpArrow();
     }
@@ -21,22 +21,22 @@ if (player) {
     if (e.keyCode == 40 && typeof frontEndOnDownArrow == "function") {
       frontEndOnDownArrow();
     }
-  });
-}
+  }
+});
 
 let blocks = scrolldiv.querySelectorAll(".block");
 blocks.forEach(function(block) {
-  if (!player) {
-    block.addEventListener('click', function() {
 
+  block.addEventListener('click', function() {
+    if (!player) {
       let x = block.parentElement.id.substr(4);
       let y = block.getAttribute("data-y");
 
       if (typeof frontEndOnObstacleDropped == "function") {
         frontEndOnObstacleDropped(0, parseInt(x), parseInt(y));
       }
-    });
-  }
+    }
+  });
 });
 
 
@@ -54,16 +54,17 @@ function createNewColumn(lastChild) {
     block.className  = "block";
     block.setAttribute("data-y", i);
 
-    if (!player) {
-      block.addEventListener('click', function() {
+
+    block.addEventListener('click', function() {
+      if (!player) {
         //let x = block.parent.id.substr(4);
         let y = i;
 
         if (typeof frontEndOnObstacleDropped == "function") {
           frontEndOnObstacleDropped(0, x, y);
         }
-      });
-    }
+      }
+    });
 
     column.appendChild(block);
   }
