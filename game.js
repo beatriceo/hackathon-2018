@@ -12,15 +12,17 @@ var frontEndOnDownArrow = null;
 var frontEndOnObstacleDropped = null;
 var frontEndOnCollide = null;
 
-document.addEventListener("keydown", function(e) {
-  if (e.keyCode == 38 && typeof frontEndOnUpArrow == "function") {
-    frontEndOnUpArrow();
-  }
+if (typeof player != "undefined" && player) {
+  document.addEventListener("keydown", function(e) {
+    if (e.keyCode == 38 && typeof frontEndOnUpArrow == "function") {
+      frontEndOnUpArrow();
+    }
 
-  if (e.keyCode == 40 && typeof frontEndOnDownArrow == "function") {
-    frontEndOnDownArrow();
-  }
-});
+    if (e.keyCode == 40 && typeof frontEndOnDownArrow == "function") {
+      frontEndOnDownArrow();
+    }
+  });
+}
 
 let blocks = scrolldiv.querySelectorAll(".block");
 blocks.forEach(function(block) {
