@@ -163,7 +163,7 @@ function frontEndGetPlayerPosition() {
 
 function frontEndGetMidpoint() {
   let columns = document.getElementsByClassName("column");
-  let middle = columns[length / 2];
+  let middle = columns[columns.length / 2];
   return middle.id.substr(4);
 }
 
