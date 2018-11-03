@@ -2,7 +2,7 @@
 var FINAL_SCORE = 5;
 var MAX_BOARD_HEIGHT = 5;
 var TABLE_LENGTH = 10;
-var BLOCK = 0;
+var OBSTACLE = 0;
 
 
 function logicCheckUp(currPosition) {
@@ -32,13 +32,13 @@ function hasObstacle(x,y) {
   }
 }
 
-function logicCheckBlockPlaceLegal(x,y) {
-  // First check the block can be placed in the current position
+function logicCheckObstaclePlaceLegal(x,y) {
+  // First check the obstacle can be placed in the current position
   if(frontEndHasObstacle(x,y)) {
     return false;
   }
 
-  // Second check that the block isn't in the vicinity of a surrounding block
+  // Second check that the obstacle isn't in the vicinity of a surrounding obstacle
   for(i = -1; i <= 1; i++) {
     for(j = -1; j <= 1; j++) {
       let xOffset = x+i;
@@ -56,5 +56,5 @@ function logicCheckBlockPlaceLegal(x,y) {
     }
   }
   // If all the tests have passed, activate this method from the server
-  serverDropBlock(BLOCK,x,y);
+  serverDropObstacle(OBSTACLE,x,y);
 }
