@@ -26,15 +26,17 @@ if (typeof player != "undefined" && player) {
 
 let blocks = scrolldiv.querySelectorAll(".block");
 blocks.forEach(function(block) {
-  block.addEventListener('click', function() {
+  if (typeof player != "undefined" && !player) {
+    block.addEventListener('click', function() {
 
-    let x = block.parentElement.id.substr(4);
-    let y = block.getAttribute("data-y");
+      let x = block.parentElement.id.substr(4);
+      let y = block.getAttribute("data-y");
 
-    if (typeof frontEndOnObstacleDropped == "function") {
-      frontEndOnObstacleDropped(0, x, y);
-    }
-  });
+      if (typeof frontEndOnObstacleDropped == "function") {
+        frontEndOnObstacleDropped(0, x, y);
+      }
+    });
+  }
 });
 
 
@@ -52,14 +54,16 @@ function createNewColumn(lastChild) {
     block.className  = "block";
     block.setAttribute("data-y", i);
 
-    block.addEventListener('click', function() {
-      //let x = block.parent.id.substr(4);
-      let y = i;
+    if (typeof player != "undefined" && !player) {
+      block.addEventListener('click', function() {
+        //let x = block.parent.id.substr(4);
+        let y = i;
 
-      if (typeof frontEndOnObstacleDropped == "function") {
-        frontEndOnObstacleDropped(0, x, y);
-      }
-    });
+        if (typeof frontEndOnObstacleDropped == "function") {
+          frontEndOnObstacleDropped(0, x, y);
+        }
+      });
+    }
 
     column.appendChild(block);
   }
