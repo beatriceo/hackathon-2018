@@ -41,3 +41,11 @@ frontEndOnObstacleDropped = function (obstacle, x, y) {
         logicCheckObstaclePlaceLegal(obstacle, x, y)
     }
 }
+
+serverOnGameType = function (type) {
+    if (type == 'runner') {
+        player = true
+    } else {
+        player = false
+    }
+}

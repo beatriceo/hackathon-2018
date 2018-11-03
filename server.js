@@ -107,6 +107,13 @@ websocket.onmessage = function(evt) {
             }
             break
 
+        case 'gametype':
+            if (typeof serverOnGameType === 'function') {
+                var type = message.type
+                serverOnGameType(type)
+            }
+            break
+
         case 'gamestart':
             if (typeof serverOnGameStart === 'function') {
                 serverOnGameStart()
