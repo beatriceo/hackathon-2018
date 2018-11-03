@@ -12,7 +12,7 @@ var frontEndOnDownArrow = null;
 var frontEndOnObstacleDropped = null;
 var frontEndOnCollide = null;
 
-if (typeof player != "undefined" && player) {
+if (player) {
   document.addEventListener("keydown", function(e) {
     if (e.keyCode == 38 && typeof frontEndOnUpArrow == "function") {
       frontEndOnUpArrow();
@@ -26,7 +26,7 @@ if (typeof player != "undefined" && player) {
 
 let blocks = scrolldiv.querySelectorAll(".block");
 blocks.forEach(function(block) {
-  if (typeof player != "undefined" && !player) {
+  if (!player) {
     block.addEventListener('click', function() {
 
       let x = block.parentElement.id.substr(4);
@@ -54,7 +54,7 @@ function createNewColumn(lastChild) {
     block.className  = "block";
     block.setAttribute("data-y", i);
 
-    if (typeof player != "undefined" && !player) {
+    if (!player) {
       block.addEventListener('click', function() {
         //let x = block.parent.id.substr(4);
         let y = i;
