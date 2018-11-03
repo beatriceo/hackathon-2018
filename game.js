@@ -161,6 +161,12 @@ function frontEndGetPlayerPosition() {
   return index;
 }
 
+function frontEndGetMidpoint() {
+  let columns = document.getElementsByClassName("column");
+  let middle = columns[length / 2];
+  return middle.id.substr(4);
+}
+
 var gameMover = setInterval(function() {
   if (currentpos != endpos) {
     currentpos += 2;
