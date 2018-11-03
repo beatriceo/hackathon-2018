@@ -196,4 +196,4 @@ var gameMover = setInterval(function() {
       scrolldiv.style.marginLeft = scrollPos + "px";
     }
   }
-}, 20)
+}, 5)
