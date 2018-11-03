@@ -95,6 +95,18 @@ function checkCollide() {
 
     if (overlap && typeof frontEndOnCollide == "function") {
       frontEndOnCollide();
+      let stopperScore = document.getElementById("stopper-score");
+
+      stopperScore.innerText = parseInt(stopperScore.innerText) + 1;
+
+
+      let stopperScore = document.getElementById("stopper-s
+      let stopperScore = document.getElementById("stopper-score");
+
+      stopperScore.innerText = parseInt(stopperScore.innerText) + 1;
+
+
+      stopperScore.innerText = parseInt(stopperScore.innerTex
     }
   });
 }
@@ -175,6 +187,12 @@ function frontEndGetMidpoint() {
   let middle = columns[Math.floor(columns.length / 2)];
   return middle.id.substr(4);
 }
+
+setTimeout(function() {
+  let runnerScore = document.getElementById("runner-score");
+  runnerScore.innerText = parseInt(runnerScore.innerText) + 1;
+  serverEndGame();
+}, 7000)
 
 var gameMover = setInterval(function() {
   if (currentpos != endpos) {
