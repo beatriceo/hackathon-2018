@@ -30,3 +30,7 @@
   height: 500px;
   width: 100px;
 }
+
+.obstacle-0 {
+    background-color: green;
+}

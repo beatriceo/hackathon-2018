@@ -1,10 +1,11 @@
 'use strict'
 
-serverOnAdvanceGame = function () {
+serverOnAdvanceScreen = function () {
     frontEndMove()
 }
 
 serverOnObstacleDropped = function (obstacle, x, y) {
+    //console.log('actually drop an obstacle')
     frontEndPlaceObstacle(obstacle, x, y)
 }
 
@@ -27,6 +28,7 @@ frontEndOnDownArrow = function () {
 }
 
 frontEndOnObstacleDropped = function (obstacle, x, y) {
+    console.log('pre:', y)
+    //console.log('obstacle dropped', [x, y])
     logicCheckObstaclePlaceLegal(obstacle, x, y)
 }
-

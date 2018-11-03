@@ -18,19 +18,20 @@ var websocketConnected = false
 
 var serverOnGameStart = null
 var serverOnAdvanceScreen = null
-var serverOnObstalceDropped = null
+var serverOnObstacleDropped = null
 var serverOnPlayerMove = null
 
 
 function serverDropObstacle(obstacle, x, y) {
+    //console.log('currently: ', [x, y])
     if (websocketConnected) {
         var msg = {
             type: 'dropobstacle',
-            obstacle: obstacle
+            obstacle: obstacle,
             x: x,
             y: y
         }
-        websocket.send(msg)
+        websocket.send(JSON.stringify(msg))
     }
 }
 
@@ -41,7 +42,7 @@ function serverPlayerMove(direction) {
             type: 'playermove',
             direction: direction
         }
-        websocket.send(msg)
+        websocket.send(JSON.stringify(msg))
     }
 }
 
@@ -71,6 +72,7 @@ websocket.onmessage = function(evt) {
 
     // process the messages
     var type = message.type
+    //console.log(type)
     switch (type) {
         case 'playermove':
             if (typeof serverOnPlayerMove === 'function') {
@@ -85,7 +87,7 @@ websocket.onmessage = function(evt) {
             }
             break
 
-        case 'obstacledrop':
+        case 'dropobstacle':
             if (typeof serverOnObstacleDropped === 'function') {
                 var obstacle = message.obstacle
                 var x = message.x
@@ -101,5 +103,5 @@ websocket.onmessage = function(evt) {
             break
     }
 
-    console.log('message received', message)
+    //console.log('message received', message)
 }

@@ -9,7 +9,7 @@ let currentpos = 0;
 
 var frontEndOnUpArrow = null;
 var frontEndOnDownArrow = null;
-var frontEndOnBlockDropped = null;
+var frontEndOnObstacleDropped = null;
 var frontEndOnCollide = null;
 
 document.addEventListener("keydown", function(e) {
@@ -26,11 +26,11 @@ let blocks = scrolldiv.querySelectorAll(".block");
 blocks.forEach(function(block) {
   block.addEventListener('click', function() {
 
-    let x = block.parent.id.substr(4);
+    let x = block.parentElement.id.substr(4);
     let y = block.getAttribute("data-y");
 
-    if (typeof frontEndOnBlockDropped == "function") {
-      frontEndOnBlockDropped();
+    if (typeof frontEndOnObstacleDropped == "function") {
+      frontEndOnObstacleDropped(0, x, y);
     }
   });
 });
@@ -42,12 +42,23 @@ function createNewColumn(lastChild) {
   column.className = "column";
   let columnId = lastChild.id.split("-");
 
-  column.id = `col-${parseInt(columnId.pop()) + 1}`;
+  var x = parseInt(columnId.pop()) + 1
+  column.id = `col-${x}`;
 
   for (let i = 0; i < 5; i++) {
     let block = document.createElement("div");
     block.className  = "block";
     block.setAttribute("data-y", i);
+
+    block.addEventListener('click', function() {
+      //let x = block.parent.id.substr(4);
+      let y = i;
+
+      if (typeof frontEndOnObstacleDropped == "function") {
+        frontEndOnObstacleDropped(0, x, y);
+      }
+    });
+
     column.appendChild(block);
   }
 
@@ -56,8 +67,8 @@ function createNewColumn(lastChild) {
 }
 
 function getBlock(x, y) {
-  let column = document.getElementById(`col-${y}`);
-  let block = column.querySelectorAll(`div[data-y="${x}"]`)[0];
+  let column = document.getElementById(`col-${x}`);
+  let block = column.querySelectorAll(`div[data-y="${y}"]`)[0];
   return block;
 }
 
@@ -110,9 +121,24 @@ function frontEndOnDropObstacle(type, x, y) {
   block.classList.add("obstacle");
 }
 
+function frontEndSquareExists(x, y) {
+    let column = document.getElementById(`col-${x}`);
+    if (column == null) {
+        return false
+    }
+
+    let block = column.querySelectorAll(`div[data-y="${y}"]`);
+    return block.length != 0
+}
+
 function frontEndHasObstacle(x, y) {
   let block = getBlock(x, y);
-  return block.classList.contains("obstacle");
+  for (var i = 0; i < block.classList.length; i++) {
+      if (block.classList[i].indexOf('obstacle-') != -1) {
+          return true
+      }
+  }
+  //return block.classList.contains("obstacle");
 }
 
 function frontEndPlaceObstacle(obstacle, x, y) {
