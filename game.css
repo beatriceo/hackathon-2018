@@ -12,6 +12,12 @@ body {
 
 }
 
+.content {
+
+    margin-left: 5vw;
+
+}
+
 .background {
     background-image: url('sea-bg.png');
     background-size: cover;
