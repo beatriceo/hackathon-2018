@@ -21,6 +21,7 @@ var serverOnGameEnd = null
 var serverOnAdvanceScreen = null
 var serverOnObstacleDropped = null
 var serverOnPlayerMove = null
+var serverOnGameType = null
 
 
 function serverDropObstacle(obstacle, x, y) {
@@ -109,8 +110,8 @@ websocket.onmessage = function(evt) {
 
         case 'gametype':
             if (typeof serverOnGameType === 'function') {
-                var type = message.type
-                serverOnGameType(type)
+                var gametype = message.gametype
+                serverOnGameType(gametype)
             }
             break
 

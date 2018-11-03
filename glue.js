@@ -43,6 +43,7 @@ frontEndOnObstacleDropped = function (obstacle, x, y) {
 }
 
 serverOnGameType = function (type) {
+    console.log(type)
     if (type == 'runner') {
         player = true
     } else {
