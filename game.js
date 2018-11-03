@@ -104,8 +104,8 @@ function frontEndMove() {
 
 function frontEndPlayerMove(direction) {
   let playerColumn = document.getElementById("player-column");
-  let children = playerColumn.children;
 
+  let children = playerColumn.getElementsByClassName("block");
   let index = -1;
   for (let i = 0; i < children.length; i++) {
     if (children[i].classList.contains("player")) {
@@ -156,7 +156,8 @@ function frontEndPlaceObstacle(obstacle, x, y) {
 
 function frontEndGetPlayerPosition() {
   let playerColumn = document.getElementById("player-column");
-  let children = playerColumn.children;
+  let children = playerColumn.getElementsByClassName("block");
+  // let children = playerColumn.children;
 
   let index = -1;
   for (let i = 0; i < children.length; i++) {
