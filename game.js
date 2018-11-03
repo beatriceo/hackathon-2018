@@ -178,11 +178,13 @@ function frontEndGetMidpoint() {
   return middle.id.substr(4);
 }
 
-setTimeout(function() {
-  let runnerScore = document.getElementById("runner-score");
-  runnerScore.innerText = parseInt(runnerScore.innerText) + 1;
-  serverEndGame();
-}, 7000)
+function frontEndGameStart() {
+  setTimeout(function() {
+    let runnerScore = document.getElementById("runner-score");
+    runnerScore.innerText = parseInt(runnerScore.innerText) + 1;
+    serverEndGame();
+  }, 7000)
+}
 
 var gameMover = setInterval(function() {
   if (currentpos != endpos) {
