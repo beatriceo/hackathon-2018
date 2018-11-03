@@ -1,54 +1,60 @@
 // A varaiable to set the final score needed to win the game
-global let FINAL_SCORE = 5;
+var FINAL_SCORE = 5;
+var MAX_BOARD_HEIGHT = 5;
+var TABLE_LENGTH = 10;
+var BLOCK = 0;
 
-function processInput(input) {
-  // Check the input that has been recieved
-  // Determine which functions need to be called
-  // If the funtions return false, then don't send anything to the network
-  // If unknown input is recieved don't act upon it
 
+function logicCheckUp(currPosition) {
+    if(currPosition-- < 0) {
+      // Do nothing
+    }
+    else {
+      serverPlayerMove("up");
+    }
 }
 
-
-function checkUp(currPosition) {
-  // See if the user would be moving to a -ve positon in the table
-  // If not move them up by one block and return true
-  // Otherwise do not move them and return false
+function logicCheckDown(currPosition) {
+  if(currPosition++ > MAX_BOARD_HEIGHT) {
+    // Do nothing
+  }
+  else {
+    serverPlayerMove("down");
+  }
 }
 
-function checkDown(currPosition) {
-  // See if the user would be moving to a value greater than the height of the table
-  // If not move them down by one block and return true
-  // Otherwise do not move them and return false
+function hasObstacle(x,y) {
+  if(frontEndHasObstacle) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
-function checkCollision(currRunnner, currObstacle) {
-  // Have a switch case menu that will determine what the user has collided with
-  // Then run an appropritate method, then check if the method was executed successfully
-  // If it wasn't return false
-}
+function logicCheckBlockPlaceLegal(x,y) {
+  // First check the block can be placed in the current position
+  if(frontEndHasObstacle(x,y)) {
+    return false;
+  }
 
-function checkFinished(currRunnner) {
-  // Will check the runner has reached the finish line
-  // If so they will be awarded a point, then checks if they have won
-}
+  // Second check that the block isn't in the vicinity of a surrounding block
+  for(i = -1; i <= 1; i++) {
+    for(j = -1; j <= 1; j++) {
+      let xOffset = x+i;
+      let yOffset = y+j;
 
-function checkWin(currPlayer) {
-  // Check if a player has gotten enough points to win
-  // If so the game ends and they win
-}
+      if(!(x === xOffset && y === yOffset)) {
+        if((!(xOffset < 0 || xOffset > MAX_BOARD_HEIGHT) && !(yOffset < 0 || yOffset > TABLE_LENGTH))) {
+          console.log("x "+xOffset+" y "+yOffset);
+          if(hasObstacle(xOffset,yOffset)) {
+            return false;
+          }
+        }
+      }
 
-function executeDeath(currRunner, successfulStopper) {
-  // If the currRunner is hit with a block, then the stopper will receive a point
-  // Then checked if they have won
-}
-
-function checkPathLegal() {
-  // Will read the table, checks if the runner can navigate through the table
-  // If there are no possible paths found, return false
-}
-
-function checkCanPlaceBlock(droppedPos) {
-  // Checks in the table if the current position is taken
-  // If not place the block there and replace true
+    }
+  }
+  // If all the tests have passed, activate this method from the server
+  serverDropBlock(BLOCK,x,y);
 }
