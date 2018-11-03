@@ -29,8 +29,17 @@
   position: absolute;
   height: 500px;
   width: 100px;
+  z-index: 999;
+}
+
+#player-column .block {
+    border: none;
 }
 
 .obstacle-0 {
     background-color: green;
+}
+
+.player {
+    background-color: black;
 }

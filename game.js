@@ -13,11 +13,11 @@ var frontEndOnObstacleDropped = null;
 var frontEndOnCollide = null;
 
 document.addEventListener("keydown", function(e) {
-  if (e.keycode == 38 && typeof frontEndOnUpArrow == "function") {
+  if (e.keyCode == 38 && typeof frontEndOnUpArrow == "function") {
     frontEndOnUpArrow();
   }
 
-  if (e.keycode == 40 && typeof frontEndOnDownArrow == "function") {
+  if (e.keyCode == 40 && typeof frontEndOnDownArrow == "function") {
     frontEndOnDownArrow();
   }
 });
@@ -76,7 +76,7 @@ function checkCollide() {
   let player = document.getElementsByClassName("player")[0];
   let playerRect = player.getBoundingClientRect();
 
-  let obstacles = document.querySelectorAll(".obstacle");
+  let obstacles = document.querySelectorAll('div[class*="obstacle-"]');
 
   obstacles.forEach(function(obstacle) {
     let obstacleRect = obstacle.getBoundingClientRect();
@@ -101,13 +101,15 @@ function frontEndPlayerMove(direction) {
   let children = playerColumn.children;
 
   let index = -1;
-  for (let i = 0; i < children; i++) {
+  for (let i = 0; i < children.length; i++) {
     if (children[i].classList.contains("player")) {
       index = i;
       children[i].classList.remove("player");
       break;
     }
   }
+
+  console.log('index is', index)
 
   if (direction == "up") {
     children[index - 1].classList.add("player");
@@ -153,13 +155,13 @@ function frontEndGetPlayerPosition() {
   let index = -1;
   for (let i = 0; i < children.length; i++) {
     if (children[i].classList.contains("player")) {
-      return index;
+      return i;
     }
   }
   return index;
 }
 
-setInterval(function() {
+var gameMover = setInterval(function() {
   if (currentpos != endpos) {
     currentpos += 2;
 

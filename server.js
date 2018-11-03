@@ -12,11 +12,12 @@
  *  - serverOnPlayerMove(direction)
  */
 
-var websocket = new WebSocket('ws://127.0.0.1:7624/')
+var websocket = new WebSocket("ws://" + window.location.hostname + ":7624/")
 var websocketConnected = false
 
 
 var serverOnGameStart = null
+var serverOnGameEnd = null
 var serverOnAdvanceScreen = null
 var serverOnObstacleDropped = null
 var serverOnPlayerMove = null
@@ -41,6 +42,16 @@ function serverPlayerMove(direction) {
         var msg = {
             type: 'playermove',
             direction: direction
+        }
+        websocket.send(JSON.stringify(msg))
+    }
+}
+
+
+function serverEndGame() {
+    if (websocketConnected) {
+        var msg = {
+            type: 'gameend'
         }
         websocket.send(JSON.stringify(msg))
     }
@@ -99,6 +110,13 @@ websocket.onmessage = function(evt) {
         case 'gamestart':
             if (typeof serverOnGameStart === 'function') {
                 serverOnGameStart()
+            }
+            break
+
+        case 'gameend':
+            console.log('endy endy')
+            if (typeof serverOnGameEnd === 'function') {
+                serverOnGameEnd()
             }
             break
     }

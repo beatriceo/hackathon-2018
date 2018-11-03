@@ -1,5 +1,9 @@
 'use strict'
 
+serverOnGameEnd = function () {
+    clearInterval(gameMover)
+}
+
 serverOnAdvanceScreen = function () {
     frontEndMove()
 }
@@ -14,11 +18,13 @@ serverOnPlayerMove = function (direction) {
 }
 
 frontEndOnCollide = function () {
-    alert('collision!')
+    //alert('collision!')
+    serverEndGame()
 }
 
 frontEndOnUpArrow = function () {
     var playerPositionY = frontEndGetPlayerPosition()
+    console.log('posision', playerPositionY)
     logicCheckUp(playerPositionY)
 }
 

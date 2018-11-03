@@ -6,19 +6,14 @@ var OBSTACLE = 0;
 
 
 function logicCheckUp(currPosition) {
-    if(currPosition-- < 0) {
-      // Do nothing
-    }
-    else {
+    console.log(currPosition)
+    if(currPosition != 0) {
       serverPlayerMove("up");
     }
 }
 
 function logicCheckDown(currPosition) {
-  if(currPosition++ > MAX_BOARD_HEIGHT) {
-    // Do nothing
-  }
-  else {
+  if(currPosition != MAX_BOARD_HEIGHT-1) {
     serverPlayerMove("down");
   }
 }
