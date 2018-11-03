@@ -27,7 +27,7 @@ document.addEventListener("keydown", function(e) {
 let blocks = scrolldiv.querySelectorAll(".block");
 blocks.forEach(function(block) {
 
-  block.addEventListener('click', function() {
+  block.addEventListener('mousedown', function() {
     if (!player) {
       let x = block.parentElement.id.substr(4);
       let y = block.getAttribute("data-y");
@@ -55,7 +55,7 @@ function createNewColumn(lastChild) {
     block.setAttribute("data-y", i);
 
 
-    block.addEventListener('click', function() {
+    block.addEventListener('mousedown', function() {
       if (!player) {
         //let x = block.parent.id.substr(4);
         let y = i;
@@ -178,13 +178,20 @@ function frontEndGetMidpoint() {
   return middle.id.substr(4);
 }
 
-function frontEndGameStart() {
-  setTimeout(function() {
+/*function frontEndGameStart() {
+  setTimeout(scoreLoop, 7000)
+}*/
+
+/*function scoreLoop() {
     let runnerScore = document.getElementById("runner-score");
     runnerScore.innerText = parseInt(runnerScore.innerText) + 1;
-    serverEndGame();
-  }, 7000)
-}
+
+    if (parseInt(runnerScore.innerText) >= 3) {
+        serverEndGame();
+    } else {
+        setTimeout(scoreLoop, 7000)
+    }
+}*/
 
 var gameMover = setInterval(function() {
   if (currentpos != endpos) {

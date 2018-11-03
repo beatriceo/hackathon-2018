@@ -22,6 +22,7 @@ var serverOnAdvanceScreen = null
 var serverOnObstacleDropped = null
 var serverOnPlayerMove = null
 var serverOnGameType = null
+var serverOnHighscores = null
 
 
 function serverDropObstacle(obstacle, x, y) {
@@ -53,6 +54,27 @@ function serverEndGame() {
     if (websocketConnected) {
         var msg = {
             type: 'gameend'
+        }
+        websocket.send(JSON.stringify(msg))
+    }
+}
+
+
+function serverSubmitScore(score) {
+    if (websocketConnected) {
+        var msg = {
+            type: 'submitscore',
+            score: score
+        }
+        websocket.send(JSON.stringify(msg))
+    }
+}
+
+
+function serverGetScores() {
+    if (websocketConnected) {
+        var msg = {
+            type: 'getscores'
         }
         websocket.send(JSON.stringify(msg))
     }
@@ -122,9 +144,15 @@ websocket.onmessage = function(evt) {
             break
 
         case 'gameend':
-            console.log('endy endy')
             if (typeof serverOnGameEnd === 'function') {
                 serverOnGameEnd()
+            }
+            break
+
+        case 'highscores':
+            if (typeof serverOnHighscores === 'function') {
+                var scores = message.scores
+                serverOnHighscores(scores)
             }
             break
     }

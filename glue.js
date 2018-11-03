@@ -1,7 +1,11 @@
 'use strict'
 
+var startTime = -1
+var collided = false
+
 serverOnGameEnd = function () {
     clearInterval(gameMover)
+    document.location.href = "/"
 }
 
 serverOnAdvanceScreen = function () {
@@ -18,8 +22,15 @@ serverOnPlayerMove = function (direction) {
 }
 
 frontEndOnCollide = function () {
-    //alert('collision!')
-    serverEndGame()
+    if (!collided) {
+        collided = true
+        var score = Math.floor((Date.now() - startTime) / 1000)
+        serverSubmitScore(score)
+        serverEndGame()
+        if (player = true /* this is a runner */) {
+            alert("Your score was " + score)
+        }
+    }
 }
 
 frontEndOnUpArrow = function () {
@@ -49,4 +60,13 @@ serverOnGameType = function (type) {
     } else {
         player = false
     }
+}
+
+serverOnGameStart = function () {
+    //frontEndGameStart()
+    startTime = Date.now()
+}
+
+serverOnHighscores = function (highscores) {
+    console.log(highscores)
 }
