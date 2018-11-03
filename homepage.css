@@ -1,0 +1,76 @@
+@font-face {
+    font-family: EightBitDragon;
+    src: url(eight-bit-dragon.otf);
+}
+
+body {
+
+    background: none;
+    font-family: EightBitDragon;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+
+}
+
+@keyframes animateBackground {
+	from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
+.background-animation {
+
+    width: 100vw;
+	height: 100vh;
+	background-image: url('home-bg-longer.png');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    position: fixed;
+
+	animation: animateBackground 30s linear infinite;
+
+}
+
+.title-section {
+
+    z-index: +1;
+    margin: auto;
+    width: 40vw;
+    position: relative;
+    padding-top: 15vw;
+    background: none;
+
+}
+
+.title {
+
+    font-size: 50px;
+    text-align: center;
+    z-index: +1;
+
+}
+
+.subtitle {
+
+    font-size: 30px;
+    text-align: center;
+    z-index: +1;
+
+}
+
+.home-button-section {
+
+    width: 20vw;
+    height: 10vh;
+    margin: auto;
+    z-index: +1;
+
+}
+
+.boat-animation {
+
+
+
+}
