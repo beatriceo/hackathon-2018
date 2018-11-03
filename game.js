@@ -120,6 +120,19 @@ function frontEndPlaceObstacle(obstacle, x, y) {
   block.classList.add(`obstacle-${obstacle}`);
 }
 
+function frontEndGetPlayerPosition() {
+  let playerColumn = document.getElementById("player-column");
+  let children = playerColumn.children;
+
+  let index = -1;
+  for (let i = 0; i < children.length; i++) {
+    if (children[i].classList.contains("player")) {
+      return index;
+    }
+  }
+  return index;
+}
+
 setInterval(function() {
   if (currentpos != endpos) {
     currentpos += 2;
