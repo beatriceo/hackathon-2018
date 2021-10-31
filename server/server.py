@@ -1,5 +1,7 @@
+#!/bin/python3
+
 from websocket_server import WebsocketServer
-import thread
+import _thread
 import json
 import time
 import random
@@ -28,13 +30,13 @@ def timeTicks():
 
 def newClient(client, server):
     global startGame
-    print str(len(server.clients)) + " clients connected"
+    print(str(len(server.clients)) + " clients connected")
 
     # once we have filled up the clients, start the game
     if len(server.clients) == MAX_CLIENTS:
 
         runner = random.randint(0, MAX_CLIENTS-1)
-        print "runner is " + str(runner)
+        print("runner is " + str(runner))
 
         for i in range(0, MAX_CLIENTS):
             if i == runner:
@@ -49,14 +51,14 @@ def newMessage(client, server, message):
     global startGame
 
     server.send_message_to_all(message)
-    print "relayed message to all:"
-    print message
+    print("relayed message to all:")
+    print(message)
 
     message = json.loads(message)
     type = message['type']
     if type == 'gameend':
         startGame = False
-        print "stopped game"
+        print("stopped game")
     elif type == 'submitscore':
         score = message['score']
         with open('scores.json', 'r') as f:
@@ -66,9 +68,11 @@ def newMessage(client, server, message):
             json.dump(scores, f)
 
 
-thread.start_new_thread(timeTicks, ())
+_thread.start_new_thread(timeTicks, ())
 
-server = WebsocketServer(7624, host='')
+PORT=7624
+
+server = WebsocketServer(port=PORT)
 server.set_fn_message_received(newMessage)
 server.set_fn_new_client(newClient)
 server.run_forever()

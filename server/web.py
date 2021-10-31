@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#!/bin/python3
 
 import bottle
 import socket
@@ -8,12 +9,12 @@ import struct
 # static files (js/css/etc)
 @bottle.route('/static/<filepath:path>')
 def static(filepath):
-    return bottle.static_file(filepath, root='hackathon-2018/')
+    return bottle.static_file(filepath, root='..')
 
 @bottle.route('/')
 @bottle.route('index.html')
 def index2():
-    bottle.redirect('/static/index.html', 301)
+    bottle.redirect('../static/index.html', 301)
 
 
 @bottle.route('/highscores')
